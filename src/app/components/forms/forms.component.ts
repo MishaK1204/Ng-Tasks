@@ -4,7 +4,7 @@ import {MatError, MatFormField, MatFormFieldModule, MatHint, MatLabel} from "@an
 import {MatInput, MatInputModule} from "@angular/material/input";
 import {MatButton} from "@angular/material/button";
 import {CustomDatePipe} from "../../pipes/date.pipe";
-import {TextareaComponent} from "../../ui/input/textarea.component";
+import {TextareaComponent} from "../../ui/textarea/textarea.component";
 import {ErrorStateMatcher, MatOption, provideNativeDateAdapter} from "@angular/material/core";
 import {DefaultErrorStateMatcher} from "./default-error-state-matcher";
 import {MatSelect} from "@angular/material/select";
