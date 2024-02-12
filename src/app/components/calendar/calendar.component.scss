@@ -1,0 +1,45 @@
+$block: '.ng-tasks-calendar';
+$header: $block + '__header';
+$calendarContainer: $block + '__container';
+$weekName: $calendarContainer + '__week-name';
+$day: $calendarContainer + '__day';
+$square: $day + '__square';
+
+#{$block} {
+  &__header {
+    text-align: center;
+  }
+
+  &__container {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 5px;
+
+    &__week-name {
+      text-align: center;
+      padding: 5px;
+      font-weight: bold;
+    }
+
+    &__day {
+      border: 1px solid #ccc;
+
+      &__square {
+        padding: 10px;
+        border-top: 1px solid #ccc;
+      }
+    }
+  }
+}
+
+.green {
+  background-color: lightgreen;
+}
+
+.red {
+  background-color: tomato;
+}
+
+.grey {
+  background-color: #ccc;
+}

@@ -1,0 +1,15 @@
+<h1 class="ng-tasks-calendar__header">February {{ currentDate.getFullYear() }}</h1>
+<div class="ng-tasks-calendar__container">
+  @for (day of weekDays; track day) {
+    <div class="ng-tasks-calendar__container__week-name">{{ day }}</div>
+  }
+
+  @for (day of calendarDays; track day) {
+    <div class="ng-tasks-calendar__container__day">
+      <div class="ng-tasks-calendar__container__day__square"
+           [ngClass]="{ 'green': day.isCurrentDay, 'red': day.isWeekend && !day.isCurrentDay, 'grey': day.isOutsideMonth }">
+        {{ day.date.getDate() }}
+      </div>
+    </div>
+  }
+</div>

@@ -1,0 +1,8 @@
+<section class="ng-tasks-string-matcher__container">
+  @for (string of stringsToMatch; track string) {
+    <div>
+      {{ string }}
+      <span>{{ simpleMatchPercentage(baseString, string) }}%</span>
+    </div>
+  }
+</section>

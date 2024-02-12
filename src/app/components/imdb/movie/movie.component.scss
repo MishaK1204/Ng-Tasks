@@ -1,0 +1,29 @@
+$block: '.ng-tasks-movie__container';
+
+#{$block} {
+  display: flex;
+  flex-direction: column;
+
+  width: 25rem;
+  height: 25rem;
+  padding: 1rem;
+
+  border: solid 1px #ccc;
+  border-radius: 0.5rem;
+
+  h4 {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    text-align: center;
+  }
+
+  img {
+    width: 15rem;
+    height: 15rem;
+    margin-top: 4rem;
+    align-self: center;
+
+    object-fit: cover;
+  }
+}

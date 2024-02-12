@@ -1,0 +1,94 @@
+<form class="ng-tasks-forms__container" [formGroup]="form">
+  <button mat-raised-button color="primary" (click)="addJob()">Add Job</button>
+
+  <ng-container formArrayName="jobs">
+    @for (job of jobs.controls; let jobIdx = $index; track job.value) {
+      <ng-container [formGroupName]="jobIdx">
+        <section class="ng-tasks-forms__container-job-list">
+          <button mat-raised-button color="warn" (click)="removeJob(jobIdx)">Remove Job</button>
+
+          <mat-form-field>
+            <mat-label>Enter company name</mat-label>
+            <input matInput formControlName="companyName">
+            @if (job.get('companyName')?.hasError('required')) {
+              <mat-error>სავალდებულო ველი</mat-error>
+            }
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>Enter company web page</mat-label>
+            <input matInput formControlName="companyWebPage">
+            @if (job.get('companyWebPage')?.hasError('required')) {
+              <mat-error>სავალდებულო ველი</mat-error>
+            }
+          </mat-form-field>
+
+          <app-textarea placeholder="Enter company description" formControlName="companyDescription"></app-textarea>
+
+          <button mat-raised-button color="primary" (click)="addPosition(jobIdx)">Add Position</button>
+
+          <ng-container formArrayName="positions">
+            @for (position of getPositions(jobIdx).controls; let positionIdx = $index; track position.value) {
+              <ng-container [formGroupName]="positionIdx">
+                <section class="ng-tasks-forms__container-positions-list">
+                  <button mat-raised-button color="warn" (click)="removePosition(jobIdx, positionIdx)">Remove Position
+                  </button>
+
+                  <mat-form-field>
+                    <mat-label>Enter person name</mat-label>
+                    <input matInput formControlName="personName">
+                    @if (position.get('personName')?.hasError('required')) {
+                      <mat-error>სავალდებულო ველი</mat-error>
+                    }
+                  </mat-form-field>
+
+                  <mat-form-field>
+                    <mat-label>Enter position level</mat-label>
+                    <mat-select formControlName="positionLevel">
+                      @for (position of positions; track position) {
+                        <mat-option [value]="position">{{ position }}</mat-option>
+                      }
+                    </mat-select>
+                    @if (position.get('positionLevel')?.hasError('required')) {
+                      <mat-error>სავალდებულო ველი</mat-error>
+                    }
+                  </mat-form-field>
+
+                  <app-textarea placeholder="Enter position description"
+                                formControlName="positionDescription"></app-textarea>
+
+                  <div class="ng-tasks-forms__container--datepicker-container">
+                    <mat-form-field class="example-full-width">
+                      <mat-label>From</mat-label>
+                      <input matInput [matDatepicker]="from" formControlName="from" [max]="currentDay">
+                      <mat-hint>MM/DD/YYYY</mat-hint>
+                      <mat-datepicker-toggle matIconSuffix [for]="from"></mat-datepicker-toggle>
+                      <mat-datepicker #from></mat-datepicker>
+                      @if (position.get('from')?.hasError('required')) {
+                        <mat-error>სავალდებულო ველი</mat-error>
+                      }
+                    </mat-form-field>
+
+                    <mat-form-field>
+                      <mat-label>To</mat-label>
+                      <input matInput [matDatepicker]="to" formControlName="to" [max]="currentDay">
+                      <mat-hint>MM/DD/YYYY</mat-hint>
+                      <mat-datepicker-toggle matIconSuffix [for]="to"></mat-datepicker-toggle>
+                      <mat-datepicker #to></mat-datepicker>
+                      @if (position.get('to')?.hasError('required')) {
+                        <mat-error>სავალდებულო ველი</mat-error>
+                      }
+                      @if (position.get('to')?.hasError('dateRange')) {
+                        <mat-error>უნდა იყოს მეტი ვიდრე საწყისი თარიღი</mat-error>
+                      }
+                    </mat-form-field>
+                  </div>
+                </section>
+              </ng-container>
+            }
+          </ng-container>
+        </section>
+      </ng-container>
+    }
+  </ng-container>
+</form>

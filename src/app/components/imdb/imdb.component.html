@@ -1,0 +1,21 @@
+<section>
+  <mat-form-field>
+    <mat-label>Search Movie</mat-label>
+    <input matInput placeholder="Search" [formControl]="searchControl">
+  </mat-form-field>
+
+  @if (imdbService.movies()) {
+    <div class="ng-tasks-imdb__container">
+      @for (movie of imdbService.movies()?.results; track movie.id) {
+        <app-movie [movie]="movie"></app-movie>
+      }
+    </div>
+
+    <mat-paginator [length]="imdbService.movies()?.totalMatches"
+                   [pageSize]="20"
+                   [pageSizeOptions]="[10, 20]"
+                   (page)="paginate($event)"
+                   aria-label="Select page">
+    </mat-paginator>
+  }
+</section>

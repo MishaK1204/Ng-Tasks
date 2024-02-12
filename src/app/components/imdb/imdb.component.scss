@@ -1,0 +1,17 @@
+$block: '.ng-tasks-imdb';
+$moviesContainer: $block + '__container';
+
+#{$block} {
+  section {
+    padding: 5rem;
+  }
+
+  &__container {
+    width: 100%;
+
+    display: flex;
+    justify-content: start;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+}
